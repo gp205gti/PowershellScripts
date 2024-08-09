@@ -37,7 +37,7 @@
     Date: 08/08/2024
 
 .EXAMPLE
-    Sync-Folders -Source "C:\Source" -Replica "D:\Replica" -LogFile "C:\Logs\SyncLog.txt"
+    .\Sync-Folders.ps1 -Source "C:\Source" -Replica "D:\Replica" -LogFile "C:\Logs\SyncLog.txt"
 
     This example synchronizes the files and directories between the
     "C:\Source" directory and the "D:\Replica" directory.
