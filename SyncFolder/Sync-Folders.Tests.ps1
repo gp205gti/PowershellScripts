@@ -1,4 +1,4 @@
-# Pester test script for the Sync-Folders.ps1 script (Install-Module -Name Pester -Force -SkipPublisherCheck).
+# Pester test for the Sync-Folders.ps1 script (Install-Module -Name Pester -Force -SkipPublisherCheck).
 
 Describe "Testing Sync-Folders.ps1" {
 
