@@ -42,7 +42,6 @@ Describe "Testing Sync-Folders.ps1" {
 
         It "Should copy new and updated files from source to replica" {
             # Arrange
-            # $sourceFile1 = "$sourceDir\File1.txt"
             $replicaFile1 = "$replicaDir\File1.txt"
 
             # Act
