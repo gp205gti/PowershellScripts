@@ -66,7 +66,6 @@ param(
     [int] $RemovalRetries = 3,
     [bool]$RemoveFailureThrow = $true,
     [bool]$WhatIfRemoval = $false
-
 )
 
 #region Initialization area
