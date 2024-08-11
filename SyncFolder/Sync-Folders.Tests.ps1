@@ -1,4 +1,4 @@
-# Pester test for the Sync-Folders.ps1 script (Install-Module -Name Pester -Force -SkipPublisherCheck).
+# Pester test script for the Sync-Folders.ps1 script (Install-Module -Name Pester -Force -SkipPublisherCheck).
 
 Describe "Testing Sync-Folders.ps1" {
 
@@ -22,7 +22,7 @@ Describe "Testing Sync-Folders.ps1" {
         New-Item -ItemType Directory -Path $replicaDir -Force | Out-Null
 
         # Import the Sync-Folders.ps1 script
-        . $PSScriptRoot\Sync-Folders.ps1 -Source $replicaDir  -Replica $replicaDir -LogFile $logFile `
+        . $PSScriptRoot\Sync-Folders.ps1 -Source $replicaDir -Replica $replicaDir -LogFile $logFile `
             -ShowVerbose $showVerbose
     }
 
@@ -42,6 +42,7 @@ Describe "Testing Sync-Folders.ps1" {
 
         It "Should copy new and updated files from source to replica" {
             # Arrange
+            # $sourceFile1 = "$sourceDir\File1.txt"
             $replicaFile1 = "$replicaDir\File1.txt"
 
             # Act
@@ -65,7 +66,7 @@ Describe "Testing Sync-Folders.ps1" {
             (Test-Path -Path $replicaFile2) | Should -Be $false
         }
 
-        It "Should remove empty directories from replica" {
+        It "Should remove empty directories from replica not present in source" {
             # Arrange
             $emptyDir = "$replicaDir\EmptyDir"
             New-Item -ItemType Directory -Path $emptyDir | Out-Null
@@ -103,14 +104,14 @@ Describe "Testing Sync-Folders.ps1" {
             # Arrange
             # Get all available disk letters
             $currentDisks = [System.IO.DriveInfo]::GetDrives() | Where-Object { $_.DriveType -eq 'Fixed' } |
-                Select-Object -ExpandProperty Name | ForEach-Object { $_[0] }
+            Select-Object -ExpandProperty Name | ForEach-Object { $_[0] }
 
             # Create a range of all possible disk letters
             $allDiskLetters = 65..90 | ForEach-Object { [char]$_ }
 
             # Select the first disk letter not in use
             $unusedDiskLetter = $allDiskLetters | Where-Object { $_ -notin $currentDisks } |
-                Select-Object -First 1
+            Select-Object -First 1
 
             $invalidPath = "$unusedDiskLetter`:\Invalid\Path"
 
